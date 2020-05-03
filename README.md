@@ -1,1 +1,1 @@
-# TTPoint
+TTPoint is an app for TT players.
