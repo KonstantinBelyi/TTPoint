@@ -6,7 +6,7 @@ namespace TTPoint.Models
 {
     class Player
     {
-        public string Name { get; set; }
-        public string WinCount { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public int WinCount { get; set; } = 0;
     }
 }
