@@ -26,13 +26,39 @@ namespace TTPoint.ViewModels
                     OnPropertyChanged("Name");
                 }
             }
-        }        
-       
+        }
+
+        public int WinCount
+        {
+            get { return Player.WinCount; }
+            set
+            {
+                if (Player.WinCount != value)
+                {
+                    Player.WinCount = value;
+                    OnPropertyChanged("WinCount");
+                }
+            }
+        }
+
+        public int LossCount
+        {
+            get { return Player.LossCount; }
+            set
+            {
+                if (Player.LossCount != value)
+                {
+                    Player.LossCount = value;
+                    OnPropertyChanged("LossCount");
+                }
+            }
+        }
+
         public bool IsValid
         {
             get
             {
-                return !string.IsNullOrEmpty(Name.Trim());
+                return !string.IsNullOrEmpty(Name.Trim()) || WinCount >= 0 || LossCount >= 0 ;
             }
         }
 
@@ -47,10 +73,20 @@ namespace TTPoint.ViewModels
             Player.WinCount++;
         }
 
+        public void ReduceWin()
+        {
+            Player.WinCount--;
+        }
+
         public void AddLoss()
         {
             Player.LossCount++;
         }
+
+        public void ReduceLoss()
+        {
+            Player.LossCount--;
+        }        
 
         public bool SavePlayerData()
         {
