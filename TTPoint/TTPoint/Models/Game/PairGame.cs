@@ -5,7 +5,7 @@ namespace TTPoint.Models.Game
 {
     class PairGame : Game
     {
-        public TtCommand Command_1 { get; set; } = new TtCommand();
-        public TtCommand Command_2 { get; set; } = new TtCommand();
+        public TtTeam Team1 { get; set; } = new TtTeam();
+        public TtTeam Team2 { get; set; } = new TtTeam();
     }
 }
