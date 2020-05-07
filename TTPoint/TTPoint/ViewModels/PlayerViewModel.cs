@@ -1,5 +1,8 @@
 ﻿
+using Newtonsoft.Json;
+using System;
 using System.ComponentModel;
+using System.IO;
 using TTPoint.Models.Player;
 
 namespace TTPoint.ViewModels
@@ -90,8 +93,22 @@ namespace TTPoint.ViewModels
 
         public bool SavePlayerData()
         {
-            // try to save player data to file
-            return true;
+            try // try to save player data to file
+            {
+                string path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+                string filename = Path.Combine(path, $"{Player.Name}.txt");
+
+                using (var streamWriter = new StreamWriter(filename, true))
+                {
+                    string playerData = JsonConvert.SerializeObject(Player);
+                    streamWriter.WriteLine(playerData);
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }
