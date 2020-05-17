@@ -7,15 +7,29 @@ using TTPoint.Models.Player;
 
 namespace TTPoint.ViewModels
 {
-    class PlayerViewModel
+    public class PlayerViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
+        PlayersListViewModel playersList;
         
         public TtPlayer Player { get; private set; }
 
         public PlayerViewModel()
         {
             Player = new TtPlayer();
+        }
+
+        public PlayersListViewModel ListViewModel
+        {
+            get { return playersList; }
+            set 
+            {
+                if (playersList != value)
+                {
+                    playersList = value;
+                    OnPropertyChanged("ListViewModel");
+                }
+            }
         }
 
         public string Name
@@ -67,8 +81,7 @@ namespace TTPoint.ViewModels
 
         protected void OnPropertyChanged(string propName)
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }
 
         public void AddWin()
